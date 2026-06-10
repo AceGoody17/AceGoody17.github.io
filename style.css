@@ -1,11 +1,75 @@
+body {
+    background-color: #000000;
+}
+
 .box {
-  width: 300px;
-  height: 200px;
+  width: 600px;
+  height: auto;
+  min-height: 250px;
+  color: #FFFF00;
   background-color: #000000;
-  border: 2px solid #333;
-  border-radius: 8px;        
-  padding: 20px;             
-  margin: 20px auto;         
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-  color: #1AFF00;
+  border: 2px solid #FFFF00;
+  border-radius: 8px;
+  padding-top: 40px;       /* push everything down from the top */
+  padding-bottom: 40px;
+  margin: 20px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  top: 200px;  
+  left: 0px; 
+}
+
+h2 {
+  margin-top: 0;
+  margin-bottom: 30px;    /* space between title and movie name */
+}
+
+#name_display {
+  display: block;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #FFFF00;
+  opacity: 0;
+  margin-bottom: 50px;    /* space between movie name and button */
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.interactive_button {
+  font-family: 'Share Tech Mono', monospace;
+  color: #FFFF00;
+  background-color: #000000;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 12px 24px;
+  border-color: #FFFF00;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.interactive_button:hover {
+  background-color: #FFFF00;
+  color: #000000;
+  border-color: #FFFF00;
+  border-radius: 8px;
+  cursor: pointer;
+  transform: translateY(-4px);
+}
+
+.interactive_button:active {
+  background-color: #FFFF00;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(1px);
+}
+
+#name_display.show {
+  opacity: 1;
+  transform: translateY(0);
+  
 }
