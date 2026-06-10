@@ -1,17 +1,124 @@
 <!DOCTYPE html>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+    <title>Movie Picker</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&family=Rajdhani&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   </head>
   <body>
 
-    <div class="box">
-      <h2>Hello!</h2>
-      <p>This is some text inside my box.</p>
+    <div class="box" style="text-align: center;">
+      <h2 style="font-family: 'VT323', sans-serif; font-size: 5rem;">Movie of the Day</h2>
+      <a id="name_display" target="_blank" style="pointer-events: none; text-decoration: none;">Pick a movie!</a>
+      <button class="interactive_button" onclick="showName()">
+        Choose Today's Movie
+      </button>
     </div>
+
+    <script>
+      const movies = [
+        { title: "Shawshank Redemption", imdb: "https://www.imdb.com/title/tt0111161/" },
+        { title: "Forrest Gump", imdb: "https://www.imdb.com/title/tt0109830/" },
+        { title: "Seven", imdb: "https://www.imdb.com/title/tt0114369/" },
+        { title: "Life is Beautiful", imdb: "https://www.imdb.com/title/tt0118799/" },
+        { title: "Kill Bill: Vol. 1", imdb: "https://www.imdb.com/title/tt0266697/" },
+        { title: "Kill Bill: Vol. 2", imdb: "https://www.imdb.com/title/tt0378194/" },
+        { title: "Spirited Away", imdb: "https://www.imdb.com/title/tt0245429/" },
+        { title: "12th Fail", imdb: "https://www.imdb.com/title/tt23849204/" },
+        { title: "How to Lose a Guy in 10 Days", imdb: "https://www.imdb.com/title/tt0335559/" },
+        { title: "Band Baaja Baaraat", imdb: "https://www.imdb.com/title/tt1735898/" },
+        { title: "Drishyam", imdb: "https://www.imdb.com/title/tt3417422/" },
+        { title: "Laapata Ladies", imdb: "https://www.imdb.com/title/tt21626284/" },
+        { title: "Bachna Ae Haseeno", imdb: "https://www.imdb.com/title/tt1198433/" },
+        { title: "Rang de Basanti", imdb: "https://www.imdb.com/title/tt0405508/" },
+        { title: "A Wednesday", imdb: "https://www.imdb.com/title/tt1280558/" },
+        { title: "Parasite", imdb: "https://www.imdb.com/title/tt6751668/" },
+        { title: "The Prestige", imdb: "https://www.imdb.com/title/tt0482571/" },
+        { title: "Spider-Man: Into the Spider-Verse", imdb: "https://www.imdb.com/title/tt4633694/" },
+        { title: "Wall-E", imdb: "https://www.imdb.com/title/tt0910970/" },
+        { title: "Good Will Hunting", imdb: "https://www.imdb.com/title/tt0119217/" },
+        { title: "Coco", imdb: "https://www.imdb.com/title/tt2380307/" },
+        { title: "American Beauty", imdb: "https://www.imdb.com/title/tt0169547/" },
+        { title: "Requiem for a Dream", imdb: "https://www.imdb.com/title/tt0180093/" },
+        { title: "Eternal Sunshine of the Spotless Mind", imdb: "https://www.imdb.com/title/tt0338013/" },
+        { title: "The Mask", imdb: "https://www.imdb.com/title/tt0110475/" },
+        { title: "Up", imdb: "https://www.imdb.com/title/tt1049413/" },
+        { title: "Andhadhun", imdb: "https://www.imdb.com/title/tt8108198/" },
+        { title: "Tumbbad", imdb: "https://www.imdb.com/title/tt8239946/" },
+        { title: "Swades", imdb: "https://www.imdb.com/title/tt0367597/" },
+        { title: "Kahaani", imdb: "https://www.imdb.com/title/tt1821480/" }
+      ];
+
+      let remaining = JSON.parse(localStorage.getItem("remaining")) || [...movies];
+
+      function showName() {
+        const now = new Date();
+  
+        // Convert to IST (UTC+5:30)
+        const istOffset = 5.5 * 60 * 60 * 1000;
+        const istTime = new Date(now.getTime() + istOffset);
+        const todayIST = istTime.toISOString().split("T")[0]; // "2026-06-11"
+
+        const lastPicked = localStorage.getItem("lastPickedDate");
+
+        if (lastPicked === todayIST) {
+          alert("You've already picked today's movie! Come back after 12AM IST.");
+          return;
+        }
+
+        const display = document.getElementById("name_display");
+
+        // Disable link during shuffle
+        display.style.pointerEvents = "none";
+        display.style.textDecoration = "none";
+
+        let shuffleCount = 0;
+        const totalShuffles = 20;
+        const startSpeed = 50;
+        const endSpeed = 300;     
+
+        if (remaining.length === 0) {
+          display.textContent = "No more movies!";
+          return;
+        }
+
+        function shuffle() {
+          if (shuffleCount < totalShuffles) {
+            const random = remaining[Math.floor(Math.random() * remaining.length)];
+            display.textContent = random.title;
+            display.style.opacity = 1;
+            display.style.transform = "translateY(0)";
+            shuffleCount++;
+            const progress = shuffleCount / totalShuffles;
+            const speed = startSpeed + (endSpeed - startSpeed) * progress;
+            setTimeout(shuffle, speed);
+          } else {
+            const number = Math.floor(Math.random() * remaining.length);
+            const final_movie = remaining[number];
+            display.textContent = final_movie.title;
+            display.href = final_movie.imdb;        // set the link
+            display.style.pointerEvents = "auto";   // make it clickable
+            display.style.textDecoration = "underline";  // show it's a link
+            remaining.splice(number, 1);
+            localStorage.setItem("remaining", JSON.stringify(remaining));
+            localStorage.setItem("lastPickedDate", todayIST);
+
+            confetti({
+              particleCount: 100,
+              spread: 70,
+              origin: { y: 0.6 },
+              colors: ['#FFFF00', '#ffffff', '#FFD700']
+            });
+          }
+        }
+
+        shuffle();
+      }
+    </script>
 
   </body>
 </html>
