@@ -54,19 +54,22 @@
         { title: "Marriage Story", imdb: "https://www.netflix.com/title/80223779" },
         { title: "Lady Bird", imdb: "https://www.netflix.com/title/80205227" },
         { title: "The Girl with a Dragon Tattoo", imdb: "https://www.primevideo.com/dp/amzn1.dv.gti.c6a9f792-1ba0-5818-6e89-54f8350da6fb?autoplay=0&ref_=atv_cf_strg_wb" },
-        { title: "Youth", imdb: "https://www.netflix.com/title/82723855" }
+        { title: "Youth", imdb: "https://www.netflix.com/title/82723855" },
       ];
 
+      const VERSION = "v2";
+      if (localStorage.getItem("version") !== VERSION) {
+        localStorage.removeItem("remaining");
+        localStorage.setItem("version", VERSION);
+      }
 
-let remaining = JSON.parse(localStorage.getItem("remaining")) || [...movies];
+      let remaining = JSON.parse(localStorage.getItem("remaining")) || [...movies];
 
       function showName() {
         const now = new Date();
-  
-        // Convert to IST (UTC+5:30)
         const istOffset = 5.5 * 60 * 60 * 1000;
         const istTime = new Date(now.getTime() + istOffset);
-        const todayIST = istTime.toISOString().split("T")[0]; // "2026-06-11"
+        const todayIST = istTime.toISOString().split("T")[0];
 
         const lastPicked = localStorage.getItem("lastPickedDate");
 
@@ -77,14 +80,13 @@ let remaining = JSON.parse(localStorage.getItem("remaining")) || [...movies];
 
         const display = document.getElementById("name_display");
 
-        // Disable link during shuffle
         display.style.pointerEvents = "none";
         display.style.textDecoration = "none";
 
         let shuffleCount = 0;
         const totalShuffles = 20;
         const startSpeed = 50;
-        const endSpeed = 300;     
+        const endSpeed = 300;
 
         if (remaining.length === 0) {
           display.textContent = "No more movies!";
@@ -105,13 +107,12 @@ let remaining = JSON.parse(localStorage.getItem("remaining")) || [...movies];
             const number = Math.floor(Math.random() * remaining.length);
             const final_movie = remaining[number];
             display.textContent = final_movie.title;
-            display.href = final_movie.imdb;        // set the link
-            display.style.pointerEvents = "auto";   // make it clickable
-            display.style.textDecoration = "underline";  // show it's a link
+            display.href = final_movie.imdb;
+            display.style.pointerEvents = "auto";
+            display.style.textDecoration = "underline";
             remaining.splice(number, 1);
             localStorage.setItem("remaining", JSON.stringify(remaining));
             localStorage.setItem("lastPickedDate", todayIST);
-
             confetti({
               particleCount: 100,
               spread: 70,
