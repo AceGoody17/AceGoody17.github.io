@@ -57,11 +57,6 @@
         { title: "Youth", imdb: "https://www.netflix.com/title/82723855" }
       ];
 
-      const VERSION = "v2";
-if (localStorage.getItem("version") !== VERSION) {
-  localStorage.removeItem("remaining");
-  localStorage.setItem("version", VERSION);
-}
 
 let remaining = JSON.parse(localStorage.getItem("remaining")) || [...movies];
 
