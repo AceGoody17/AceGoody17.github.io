@@ -22,34 +22,48 @@
     <script>
       const movies = [
         { title: "Shawshank Redemption", imdb: "https://www.imdb.com/title/tt0111161/" },
-        { title: "Forrest Gump", imdb: "https://www.imdb.com/title/tt0109830/" },
+        { title: "Forrest Gump", imdb: "https://www.hotstar.com/in/movies/forrest-gump/1271416362" },
         { title: "Seven", imdb: "https://www.imdb.com/title/tt0114369/" },
-        { title: "Life is Beautiful", imdb: "https://www.imdb.com/title/tt0118799/" },
-        { title: "Kill Bill: Vol. 1", imdb: "https://www.imdb.com/title/tt0266697/" },
-        { title: "Kill Bill: Vol. 2", imdb: "https://www.imdb.com/title/tt0378194/" },
+        { title: "Enola Holmes", imdb: "https://www.netflix.com/title/81277950" },
+        { title: "Kill Bill: Vol. 1", imdb: "https://www.netflix.com/title/60031236" },
+        { title: "Kill Bill: Vol. 2", imdb: "https://www.netflix.com/title/60032563" },
         { title: "Spirited Away", imdb: "https://www.imdb.com/title/tt0245429/" },
-        { title: "12th Fail", imdb: "https://www.imdb.com/title/tt23849204/" },
+        { title: "Lord of the Rings: Fellowship of the Ring", imdb: "https://www.netflix.com/title/60004480" },
+        { title: "Lord of the Rings: Fellowship of the Ring", imdb: "https://www.netflix.com/title/60004483" },
+        { title: "Lord of the Rings: Fellowship of the Ring", imdb: "https://www.netflix.com/title/60004484" },
         { title: "How to Lose a Guy in 10 Days", imdb: "https://www.imdb.com/title/tt0335559/" },
-        { title: "Band Baaja Baaraat", imdb: "https://www.imdb.com/hi/title/tt1610452/" },
-        { title: "Laapata Ladies", imdb: "https://www.imdb.com/title/tt21626284/" },
-        { title: "Bachna Ae Haseeno", imdb: "https://www.imdb.com/title/tt1182972/" },
-        { title: "Rang de Basanti", imdb: "https://www.imdb.com/title/tt0405508/" },
-        { title: "A Wednesday", imdb: "https://www.imdb.com/title/tt1280558/" },
-        { title: "Parasite", imdb: "https://www.imdb.com/title/tt6751668/" },
-        { title: "The Prestige", imdb: "https://www.imdb.com/title/tt0482571/" },
-        { title: "Spider-Man: Into the Spider-Verse", imdb: "https://www.imdb.com/title/tt4633694/" },
-        { title: "Wall-E", imdb: "https://www.imdb.com/title/tt0910970/" },
-        { title: "Good Will Hunting", imdb: "https://www.imdb.com/title/tt0119217/" },
-        { title: "Coco", imdb: "https://www.imdb.com/title/tt2380307/" },
-        { title: "American Beauty", imdb: "https://www.imdb.com/title/tt0169547/" },
-        { title: "Requiem for a Dream", imdb: "https://www.imdb.com/title/tt0180093/" },
+        { title: "Band Baaja Baaraat", imdb: "https://www.netflix.com/title/70170857" },
+        { title: "Laapata Ladies", imdb: "https://www.netflix.com/title/81760391" },
+        { title: "Bachna Ae Haseeno", imdb: "https://www.netflix.com/title/70104309" },
+        { title: "Dilwale Dulhaniya Le Jayenge", imdb: "https://www.netflix.com/title/60036747" },
+        { title: "Jab Tak He Jaan", imdb: "https://www.netflix.com/title/70258134" },
+        { title: "Guru", imdb: "https://www.netflix.com/title/70063017" },
+        { title: "Knives Out", imdb: "https://www.netflix.com/title/81037684" },
+        { title: "Spider-Man: Into the Spider-Verse", imdb: "https://www.primevideo.com/region/eu/detail/0NHHISV1B1JPKDREXLY8FTJF93" },
+        { title: "Wall-E", imdb: "https://www.hotstar.com/in/movies/walle/1660010169" },
+        { title: "Bridget Jones's Diary", imdb: "https://www.primevideo.com/detail/0U01XGUVE9MDT6BIUVQNTDTYOB" },
+        { title: "Coco", imdb: "https://www.hotstar.com/in/movies/coco/1660010633?search_query=coco" },
         { title: "Eternal Sunshine of the Spotless Mind", imdb: "https://www.imdb.com/title/tt0338013/" },
-        { title: "The Mask", imdb: "https://www.imdb.com/title/tt0110475/" },
-        { title: "Up", imdb: "https://www.imdb.com/title/tt1049413/" },
-        { title: "Andhadhun", imdb: "https://www.imdb.com/title/tt8108198/" },
-        { title: "Rocket Singh: Salesman of the Year", imdb: "https://www.imdb.com/title/tt0367597/" },
-        { title: "Kahaani", imdb: "https://www.imdb.com/title/tt1821480/" }
+        { title: "The Departed", imdb: "https://www.primevideo.com/detail/0NFUQ5A9TFWZJ3VFTFOJ4R89RU" },
+        { title: "Up", imdb: "https://www.hotstar.com/in/movies/up/1660010198" },
+        { title: "Rocket Singh: Salesman of the Year", imdb: "https://www.netflix.com/title/70129117" },
+        { title: "Kahaani", imdb: "https://www.primevideo.com/dp/amzn1.dv.gti.02f9eb9c-0e2b-4f70-978f-1617ce5ba95e?autoplay=0&ref_=atv_cf_strg_wb" },
+        { title: "The Truman Show", imdb: "https://www.netflix.com/title/11819086" },
+        { title: "Fight Club", imdb: "https://www.netflix.com/title/26004747" },
+        { title: "Anora", imdb: "https://www.netflix.com/title/81952362" },
+        { title: "Marriage Story", imdb: "https://www.netflix.com/title/80223779" },
+        { title: "Lady Bird", imdb: "https://www.netflix.com/title/80205227" },
+        { title: "The Girl with a Dragon Tattoo", imdb: "https://www.primevideo.com/dp/amzn1.dv.gti.c6a9f792-1ba0-5818-6e89-54f8350da6fb?autoplay=0&ref_=atv_cf_strg_wb" },
+        { title: "Youth", imdb: "https://www.netflix.com/title/82723855" }
       ];
+
+      const VERSION = "v2";
+if (localStorage.getItem("version") !== VERSION) {
+  localStorage.removeItem("remaining");
+  localStorage.setItem("version", VERSION);
+}
+
+let remaining = JSON.parse(localStorage.getItem("remaining")) || [...movies];
 
       let remaining = JSON.parse(localStorage.getItem("remaining")) || [...movies];
 
